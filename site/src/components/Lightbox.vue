@@ -47,8 +47,7 @@
             }
         },
         created() {
-            this.$on('closeModal', section => {
-                console.log(2);
+            this.$on('closeModal', function () {
                 this.show_modal = false;
             });
         },
