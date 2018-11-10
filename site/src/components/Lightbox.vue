@@ -2,13 +2,12 @@
     <div>
         <div class="my-gallery" :class="album_class">
             <div :class="image_class" v-for="image,key in images">
-                <a class="lightbox" :href="image.filename|resizeUrl" :data-caption="image.filename|rawUrl">
+                <a class="lightbox" href="#" :data-caption="image.filename|rawUrl">
                     <img height="180" :src="image.filename|thumbUrl" alt="" :title="image.title"/>
                 </a>
             </div>
             <div v-bind:class="{ 'loader': loading }"></div>
         </div>
-        <link rel="stylesheet" type="text/css" href="/static/css/baguetteBox.min.css">
     </div>
 </template>
 
@@ -42,26 +41,13 @@
         },
         data() {
             return {
-                baguette: null,
                 loading: false,
                 done: false,
                 from: 40,
                 max: 20,
             }
         },
-        watch: {
-            images: function (value) {
-                this.runLightbox();
-            }
-        },
         mounted() {
-            try {
-                window.$ = window.jQuery = require('jquery');
-                this.baguette = require('../../static/js/baguetteBox.min');
-                this.baguette.run('.my-gallery');
-            } catch (e) {
-            }
-
             window.onscroll = () => {
                 let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight >= (document.documentElement.offsetHeight);
                 if (bottomOfWindow) {
@@ -113,15 +99,6 @@
                 }
 
             },
-            runLightbox: function () {
-                let self = this;
-                setTimeout(function () {
-                    self.baguette.run('.my-gallery');
-                }, 500);
-            }
-
-        },
-        components: {
         }
     }
 </script>
