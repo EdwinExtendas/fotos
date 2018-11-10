@@ -2,20 +2,26 @@
     <div>
         <div class="my-gallery" :class="album_class">
             <div :class="image_class" v-for="image,key in images">
-                <a class="lightbox" :href="image.filename|resizeUrl" :data-caption="image.filename|rawUrl">
-                    <img height="180" :src="image.filename|thumbUrl" alt="" :title="image.title"/>
-                </a>
+                <img height="180"
+                     :src="image.filename|thumbUrl"
+                     @click="viewImage(image.filename)"
+                     />
             </div>
+            <ImageViewModal
+                    :show_modal="this.show_modal"
+                    :image_url="this.image_url">
+            </ImageViewModal>
             <div v-bind:class="{ 'loader': loading }"></div>
         </div>
-        <link rel="stylesheet" type="text/css" href="/static/css/baguetteBox.min.css">
     </div>
 </template>
 
 <script>
     import Config from '../../api-config'
+    import ImageViewModal from "./ImageViewModal";
 
     export default {
+        components: {ImageViewModal},
         props: {
             id: {
                 type: String,
@@ -40,33 +46,33 @@
                 required: false
             }
         },
+        created() {
+            this.$on('closeModal', section => {
+                console.log(2);
+                this.show_modal = false;
+            });
+        },
         data() {
             return {
-                baguette: null,
                 loading: false,
                 done: false,
                 from: 40,
                 max: 20,
-            }
-        },
-        watch: {
-            images: function (value) {
-                this.runLightbox();
+                image_url: '',
+                show_modal: false
             }
         },
         mounted() {
-            try {
-                window.$ = window.jQuery = require('jquery');
-                this.baguette = require('../../static/js/baguetteBox.min');
-                this.baguette.run('.my-gallery');
-            } catch (e) {
-            }
-
             window.onscroll = () => {
-                let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight >= (document.documentElement.offsetHeight);
-                if (bottomOfWindow) {
+                var pageHeight=document.documentElement.offsetHeight,
+                    windowHeight=window.innerHeight,
+                    scrollPosition=window.scrollY || window.pageYOffset || document.body.scrollTop + (document.documentElement && document.documentElement.scrollTop || 0);
+
+                console.log(pageHeight, windowHeight+scrollPosition);
+                if ((pageHeight-1) <= windowHeight+scrollPosition) {
                     this.fetchImages(this.from, this.max);
                 }
+
             };
         },
         filters: {
@@ -104,7 +110,6 @@
                                 this.images.push(e);
                             }, this);
                             this.from += this.max;
-                            this.runLightbox();
 
                         }, (response) => {
                             console.log(response);
@@ -113,15 +118,10 @@
                 }
 
             },
-            runLightbox: function () {
-                let self = this;
-                setTimeout(function () {
-                    self.baguette.run('.my-gallery');
-                }, 500);
-            }
-
-        },
-        components: {
+            viewImage: function (url) {
+                this.show_modal = true;
+                this.image_url = Config.base_api_url+'/images/resize/'+url;
+            },
         }
     }
 </script>
@@ -143,7 +143,7 @@
         box-shadow: 0 8px 15px rgba(0,0,0,0.3);
     }
 
-    .my-gallery img {
+    .my-gallery > div > img {
         width: 100%;
         margin-bottom: 30px;
         transition: 0.2s ease-in-out;
@@ -151,6 +151,9 @@
         border-radius: 4px;
     }
 
+    .my-gallery > div > img:hover {
+        transform: scale(1.03) !important;
+    }
     .loader {
         border: 8px solid #f3f3f3; /* Light grey */
         border-top: 8px solid #3498db; /* Blue */
