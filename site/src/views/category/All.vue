@@ -84,13 +84,6 @@
         max-width: 1160px;
         margin: 0 auto;
     }
-    .card-body img {
-        width: 100%;
-        transition: 0.2s ease-in-out;
-    }
-    .card-body img:hover {
-        transform: scale(1.03) !important;
-    }
     .album-name {
         font-weight: 700;
         text-align: center;
