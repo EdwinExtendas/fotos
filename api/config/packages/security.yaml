@@ -1,0 +1,22 @@
+security:
+    providers:
+        firebase:
+            entity:
+                class: App\Entity\User
+
+    firewalls:
+        main:
+            anonymous: ~
+            logout: ~
+            pattern: ^/$
+            logout_on_user_change: true
+
+        api:
+            anonymous: ~
+            pattern: ^/api/
+            logout_on_user_change: true
+
+            guard:
+                provider: firebase
+                authenticators:
+                    - App\Security\ApiAuthenticator

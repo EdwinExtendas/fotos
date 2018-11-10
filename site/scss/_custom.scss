@@ -1,0 +1,242 @@
+// Here you can add other styles
+@import "bootstrap-variables";
+
+
+.btn-core-header {
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid;
+  font-size: .875rem;
+  line-height: 1.5;
+  border-radius: 0;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.btn-core {
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid;
+  padding: .375rem .75rem;
+  font-size: .875rem;
+  line-height: 1.5;
+  border-radius: 0;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+#baguetteBox-overlay {
+  display:none;
+}
+
+// HTNML
+.x10-h-large {
+  font-size: 3vw;
+  margin-bottom: 2rem;
+  margin-left: 1rem;
+}
+
+//Login background image in loginpage
+.app.flex-row.align-items-center {
+  background: url("../static/img/login-bgrnd.jpg");
+  background-size: cover;
+}
+
+//Login style loginlogo
+.x10-loginlogo {
+  margin-bottom: 2.5vw;
+  text-align: center;
+}
+
+//Login size loginlogo
+.x10-loginlogo.x10-logo-50 img {
+  width: 50%;
+}
+
+//Sidebar Header resize logo upper left
+.navbar-brand {
+  background-size: 85% auto !important;
+}
+
+//Sidebar footer button restyle
+.sidebar .sidebar-minimizer:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+//Sidebar button minimize button restyle
+.sidebar .sidebar-minimizer {
+  background-color: rgba(200, 200, 200, 0.1);
+  border-top: 1px solid #efefef;
+}
+
+//Header no border bottom
+.app-header.navbar,
+.app-header.navbar .navbar-brand {
+  border-bottom: 1px solid #efefef;
+}
+
+//Breadgrumb no borders bottom
+.breadcrumb {
+  border-bottom: none;
+}
+
+////Main Padding top in the main container because the breadcrumb was deleted
+//.app-body .main {
+//  padding: 2.5vw 0;
+//}
+
+//Button restyle
+.btn {
+  font-weight: 500;
+  padding: .5rem 1.5rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+}
+
+//Main restyle de "pannels" Card header
+.card-header {
+  background-color: $gray-200;
+  font-weight: 600;
+  font-size: larger;
+}
+
+.vgt-wrap {
+  margin-top: 1.5vw;
+}
+
+// Table
+// Main Table row background color by Hover
+table.vgt-table td {
+  vertical-align: middle;
+}
+
+.vgt-table.striped tbody tr:nth-of-type(odd):hover {
+  background-color: rgba(51, 68, 109, 0.05);
+}
+
+.vgt-table.striped tbody tr:hover {
+  background-color: rgba(232, 232, 232, 0.2);
+}
+
+.vgt-table {
+  .btn {
+    font-weight: 400;
+    padding: 0.4rem .95rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+
+  }
+}
+
+// FORM
+input[type="radio"], input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.form-control:disabled, .form-control[readonly] {
+  background-color: $gray-100;
+  opacity: 0.5;
+}
+
+//Background image image upload
+
+.image-input-container {
+  border: none !important;
+}
+
+.x10-bg-image {
+  background-repeat: no-repeat;
+  background-position: bottom left;
+  border: none;
+}
+
+/* ------------ SPINNER --------------- */
+.basic-loader {
+  margin: 0 auto;
+  border: 4px solid #f3f3f3; /* Light grey */
+  border-top: 4px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 2s linear infinite;
+}
+
+//Global
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* ------------ LOGOUT --------------- */
+.logout {
+  margin-right: 10px;
+}
+
+/* ------------ DATATABLE --------------- */
+.vgt-table button {
+  margin-right: 5px;
+}
+
+//locations
+
+.locations_all .card-body .btn-primary {
+  margin-bottom: 1.25rem;
+}
+
+.locations_create .card-body input {
+  margin-bottom: 1.25rem;
+}
+
+//STampcard
+.stamp-card .card-body .btn-primary {
+  margin-bottom: 1.25rem;
+}
+
+//footer restyling
+.app-footer {
+  font-size: x-small;
+  border-top: 1px solid #e5e5e5;
+  background-color: #ececec;
+}
+
+.image-input-container {
+  border: 1px solid $gray-200;
+  padding: 1px;
+  cursor: pointer;
+
+  label {
+    cursor: pointer;
+  }
+
+  .image-input {
+    cursor: pointer;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}
+
+.was-validated .empty {
+  border: 1px solid $red;
+}
+
+.hidden {
+  display: none;
+}

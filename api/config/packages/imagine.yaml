@@ -1,0 +1,27 @@
+liip_imagine:
+    resolvers:
+        default:
+            web_path: ~
+    loaders:
+        default:
+            filesystem:
+                data_root:
+                    - "%kernel.project_dir%/public/image/raw"
+
+    filter_sets:
+        cache: ~
+        my_heighten:
+            filters:
+                relative_resize: { heighten: 1080 }
+        my_widen:
+            filters:
+                relative_resize: { widen: 1920 }
+        my_thumb:
+            quality:              100
+            format:               jpg
+            filters:
+                thumbnail: {size: [247, 180], mode: outbound }
+        my_ratio_down_scale_filter:
+            filters:
+                scale:
+                    to: 0.1
